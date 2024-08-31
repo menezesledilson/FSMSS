@@ -12,10 +12,15 @@ public class BlogModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")
     private Long id;
-    @Column(name = "conteudo")
-    private String content;
+    @Column(name = "descricao")
+    private String description;
     @Column(name= "datacriacao")
     private LocalDateTime datacreation;
+
+    @PrePersist
+    protected void onCreate() {
+        this.datacreation = LocalDateTime.now();
+    }
 
     public Long getId() {
         return id;
@@ -25,12 +30,12 @@ public class BlogModel {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getDescription() {
+        return description;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public LocalDateTime getDatacreation() {
